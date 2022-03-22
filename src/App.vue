@@ -1,24 +1,29 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
-  <div >
-    {{counter}}
-  </div>
-  <button @click="stopCounter">Stop counter</button>
+  <main>
+    {{}}
+    <CardComponent v-if="false" />
+    <div class="playground">
+      <CardComponent
+        v-for="item in list"
+        v-bind:key="item"
+      />
+    </div>
+  </main>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import CardComponent from './components/CardComponent.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    CardComponent
   },
   data() {
     return {
       counter: 1,
       timerId: null,
+      list: [1,2,3,4,5,6]
     }
   },
   mounted() {
@@ -41,6 +46,24 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+
+  background-color: #cfd0cf;
+  width: 100%;
+  height: 100%;
+}
+
+.playground {
+  width: 390px;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  height: 100%;
 }
 </style>
