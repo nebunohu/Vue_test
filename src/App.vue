@@ -1,35 +1,42 @@
 <template>
   <main>
-    {{}}
+    <!--{{this.charactersList}}
     <CardComponent v-if="false" />
     <div class="playground">
       <CardComponent
         v-for="item in list"
         v-bind:key="item"
       />
-    </div>
+    </div>-->
+    <CharacterCard :charactersList="charactersList" />
   </main>
 </template>
 
 <script>
 import CardComponent from './components/CardComponent.vue';
+import CharacterCard from './components/CharacterCard.vue';
+// Consts
+import { API_BASE_URL, CHARACTER } from "./consts/consts.js";
 
 export default {
   name: 'App',
   components: {
-    CardComponent
+    CardComponent,
+    CharacterCard
   },
   data() {
     return {
-      counter: 1,
-      timerId: null,
-      list: [1,2,3,4,5,6]
+      list: [1,2,3,4,5,6],
+      charactersList: [{name: ''}]
     }
   },
-  mounted() {
-    this.timerId = setInterval(() => {
-      this.counter++;
-    }, 1000)
+  beforMounted() {
+    /*const getCharactersList = async () => {
+      const res = await fetch(API_BASE_URL+CHARACTER);
+      const data = await res.json();
+      this.charactersList = data.results;
+    };
+    getCharactersList();*/
   },
   methods: {
     stopCounter: function() {
